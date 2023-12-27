@@ -22,10 +22,10 @@ process.env.NODE_ENV === "development" && mongoose.set("debug", true);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/uploads", express.static("uploads"));
-app.use("/auth", AuthRoutes);
-app.use("/movie", MovieRoutes);
-app.use("/upload", UploadRouter);
+app.use("/api/uploads", express.static("uploads"));
+app.use("/api/auth", AuthRoutes);
+app.use("/api/movie", MovieRoutes);
+app.use("/api/upload", UploadRouter);
 
 app.all("*", (req: Request, res: Response, next: NextFunction) => {
   return sendError(
