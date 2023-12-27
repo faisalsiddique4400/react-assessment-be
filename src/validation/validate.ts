@@ -13,4 +13,17 @@ const validate =
     }
   };
 
-export default validate;
+const validateQueryParam =
+  (schema) => async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      await schema.validate({
+        ...req.query,
+      });
+      return next();
+    } catch (err) {
+      console.log(err);
+      res.status(400).send(err.message);
+    }
+  };
+
+export { validate, validateQueryParam };

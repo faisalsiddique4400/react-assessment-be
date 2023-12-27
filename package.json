@@ -6,8 +6,7 @@
   "scripts": {
     "start": "tsc && node dist/app.js",
     "dev": "NODE_ENV=development ts-node-dev src/app.ts",
-    "lint": "eslint . --ext .ts",
-    "pre-commit": "npm run lint"
+    "lint": "eslint . --ext .ts"
   },
   "keywords": [],
   "author": "",

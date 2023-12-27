@@ -26,12 +26,18 @@ const getMovieController = async (
   next: NextFunction
 ) => {
   try {
-    const { limit = 10, page = 1 } = req.body;
-    const skipCount = (page - 1) * limit;
+    const { limit = "10", page = "1" } = req.query;
+    const skipCount = (Number(page) - 1) * Number(limit);
 
     const movies = await movieModel.find().skip(skipCount).limit(Number(limit));
+    const count = await movieModel.countDocuments();
 
-    return sendSuccess(res, MOVIE.MOVIES_FETCH_SUCCESS, movies, 200);
+    return sendSuccess(
+      res,
+      MOVIE.MOVIES_FETCH_SUCCESS,
+      { movies, total: count },
+      200
+    );
   } catch (error) {
     next(error);
   }

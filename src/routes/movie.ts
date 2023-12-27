@@ -1,5 +1,5 @@
 import { Router } from "express";
-import validate from "../validation/validate";
+import { validate, validateQueryParam } from "../validation/validate";
 import {
   movieCreateValidationSchema,
   movieEditValidationSchema,
@@ -24,7 +24,7 @@ MovieRoutes.post(
 MovieRoutes.get(
   "/",
   authenticate,
-  validate(movieGetValidationSchema),
+  validateQueryParam(movieGetValidationSchema),
   getMovieController
 );
 

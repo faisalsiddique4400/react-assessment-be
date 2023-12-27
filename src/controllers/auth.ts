@@ -28,8 +28,7 @@ const loginController = async (
       );
     const token = jwt.sign(
       { name: user.name, email: user.email },
-      process.env.JWT_SECRET || "securePrivateKey",
-      { expiresIn: 60 * 60 }
+      process.env.JWT_SECRET || "securePrivateKey"
     );
     return sendSuccess(res, AUTH.LOGIN_SUCCESS, token, 200);
   } catch (error) {
